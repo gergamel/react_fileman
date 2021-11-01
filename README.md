@@ -1,6 +1,6 @@
-## Finance
+## FileMan
 
-Simple budgeting for home as a project to learn [React](https://reactjs.org/). Backend is [Flask](https://flask.palletsprojects.com/en/2.0.x/) + [PostgreSQL](https://www.postgresql.org/).
+Simple file change management service as a project to learn [React](https://reactjs.org/). Backend is [Flask](https://flask.palletsprojects.com/en/2.0.x/) + [PostgreSQL](https://www.postgresql.org/).
 
 ## References
 

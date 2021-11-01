@@ -7,18 +7,55 @@ import Stack from 'react-bootstrap/Stack'
 import './App.css';
 
 class File extends React.Component {
+  constructor(props) {
+    super(props);
+    this.showFileClick = this.showFileClick.bind(this);
+    this.hideFileClick = this.hideFileClick.bind(this);
+    this.state = {showFile: false, divClass: "ms-2 border"};
+  }
+
+  showFileClick() {
+    console.log('show');
+    this.setState({showFile: true});
+  }
+
+  hideFileClick() {
+    console.log('hide');
+    this.setState({showFile: false});
+  }
+
   render() {
+    const showFile = this.state.showFile;
+    const divClass = this.state.divClass;
+    const {Digest, ContentType, Size, Name, Category } = this.props;
+    let fileObject;
+
+    if (showFile) {
+      fileObject = <Stack className="ms-2 border">
+        <object data={"http://localhost:5000/file/contents/"+Digest} type={ContentType} style={{width:"100%",height:"100vh"}}>
+        </object>
+      </Stack>;
+    } else {
+      fileObject = <div/>
+    }
+    
     return (
-      <Stack className="ms-2 border">
-        <Stack className="ms-2" direction="horizontal">
-          <div className="fw-bold me-1">{this.props.Name}</div>
-          <div className="ms-auto">{this.props.Size} Bytes</div>
+      <Stack className="ms-2 border"
+        onClick={showFile ? this.hideFileClick : this.showFileClick}
+        onMouseOver={() => this.setState({divClass: "ms-2 bg-warning border"})}
+        onMouseOut={() => this.setState({divClass: "ms-2 border"})}>
+        <Stack className={divClass}>
+          <Stack className="ms-2" direction="horizontal">
+            <div className="fw-bold me-1">{Name}</div>
+            <div className="ms-auto">{Size} Bytes</div>
+          </Stack>
+          <Stack className="ms-2" direction="horizontal">
+            <span class="badge bg-primary me-1">{Category}</span>
+            <span class="badge bg-info me-1">{ContentType}</span>
+            <span class="badge bg-secondary me-1">{Digest}</span>
+          </Stack>
         </Stack>
-        <Stack className="ms-2" direction="horizontal">
-          <span class="badge bg-primary me-1">{this.props.Category}</span>
-          <span class="badge bg-info me-1">{this.props.ContentType}</span>
-          <span class="badge bg-secondary me-1">{this.props.Digest}</span>
-        </Stack>
+        {fileObject}
       </Stack>
     );
   }
@@ -63,7 +100,6 @@ function App() {
                   ContentType={file[1]}
                   Size={file[2]}
                   Name={file[3]}
-                  Created={file[4]}
                   Category={file[5]}
                 />
               );

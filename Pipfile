@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+#psycopg = {extras = ["binary"],version = "*"} # Bug in pipenv, can't install this, but installs fine with pip inside the venv
+flask = "*"
+python-dotenv = "*"
+flask-cors = "*"
+python-magic = "*"
+simplejson = "*"
+
+[requires]
+python_version = "3.9"

@@ -68,14 +68,12 @@ class App extends React.Component {
     })
     .then((data) => {
         console.log(data);
-        //setLoading(false);
         this.setState({loading: false, files: data});
     });
   }
 
   handleSubmit(event) {
     const selectedFile = document.getElementById('fileInput').files[0];
-    //new FileUpload(selectedFile);
     var formData = new FormData();
     formData.append("file", selectedFile);
     this.setState({loading: true});
@@ -87,9 +85,6 @@ class App extends React.Component {
       .then((data) => {
           console.log(data);
           this.setState({loading: false, files: this.state.files.concat([data])});
-          //this.state.files.append(data);
-          //setLoading(false);
-          //setApiData(data);
       });
     event.preventDefault();
   }

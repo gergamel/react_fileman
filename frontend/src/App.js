@@ -9,19 +9,7 @@ import './App.css';
 class File extends React.Component {
   constructor(props) {
     super(props);
-    this.showFileClick = this.showFileClick.bind(this);
-    this.hideFileClick = this.hideFileClick.bind(this);
     this.state = {showFile: false, divClass: "ms-2 border"};
-  }
-
-  showFileClick() {
-    console.log('show');
-    this.setState({showFile: true});
-  }
-
-  hideFileClick() {
-    console.log('hide');
-    this.setState({showFile: false});
   }
 
   render() {
@@ -40,8 +28,11 @@ class File extends React.Component {
     }
     
     return (
+      /* "Arrow functions" or "() =>" read think link to learn more:
+       * https://frontarm.com/james-k-nelson/when-to-use-arrow-functions/
+       */
       <Stack className="ms-2 border"
-        onClick={showFile ? this.hideFileClick : this.showFileClick}
+        onClick={() => showFile ? this.setState({showFile: false}): this.setState({showFile: true})}
         onMouseOver={() => this.setState({divClass: "ms-2 bg-warning border"})}
         onMouseOut={() => this.setState({divClass: "ms-2 border"})}>
         <Stack className={divClass}>

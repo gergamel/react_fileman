@@ -29,7 +29,7 @@ class FileMeta():
 
 def get_all(con:Connection):
     cur = con.cursor()
-    cur.execute(f'SELECT "Digest","ContentType","Size","Name","Created","Category" FROM "Files"')
+    cur.execute(f'SELECT "Digest","ContentType","Size","Name","Created","Category" FROM "Files" ORDER BY "Name"')
     #rows = cur.fetchall()
     #print(rows)
     return (FileMeta(*row) for row in cur)

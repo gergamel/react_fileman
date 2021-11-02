@@ -36,6 +36,23 @@ def api_files():
     return jsonify([row.astuple() for row in rows])
     #return json.dumps([row.astuple() for row in rows])
 
+@app.route('/api/upload', methods=['POST'])
+def api_upload():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file:
+            meta = db.files.process_file_upload(con, file, filename=secure_filename(file.filename), content_type=file.content_type)
+            return jsonify(meta.astuple())
+
 @app.route('/files')
 def all_files():
     #cur=con.cursor()

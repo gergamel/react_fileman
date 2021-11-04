@@ -9,3 +9,21 @@ The following references were used to get to this point:
 - https://dev.to/andrewbaisden/creating-react-flask-apps-that-connect-to-postgresql-and-harperdb-1op0
 - https://react-bootstrap.netlify.app/components/alerts/ and https://getbootstrap.com/docs/4.3/getting-started/introduction/
 - https://towardsdatascience.com/build-deploy-a-react-flask-app-47a89a5d17d9
+
+## Quick Start
+
+```sh
+sudo podman run -d --name react_fileman_db -p 54321:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=fileman postgres:9.6-alpine
+```
+
+## Dependencies
+
+### Runtime
+
+- python3.9+
+- libpq
+
+### Development
+
+- npm
+- pipenv

@@ -3,11 +3,36 @@ import React from 'react';
 import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
 import Form from 'react-bootstrap/Form'
+import FormControl from 'react-bootstrap/FormControl'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 //import Accordian from 'react-bootstrap/Accordion';
 //import Toast from 'react-bootstrap/Toast';
 import './App.css';
+
+/*
+Keen to try create something like the GitLab search box, where you get
+field/category like filter options presented as you type in the drop-down and you
+can select them and they appear in the input like a multi-select...
+
+Keep reading this...
+https://opensource.appbase.io/reactive-manual/search-components/categorysearch.html
+*/
+function SearchBox() {
+  return (
+      <Form className="d-flex">
+        <FormControl
+          input-sm
+          placeholder="Search for anything..."
+          aria-label="Search"
+          aria-describedby="searchText"
+        />
+      </Form>);
+}
 
 class File extends React.Component {
   constructor(props) {
@@ -102,7 +127,27 @@ class App extends React.Component {
     // const [loading, setLoading] = useState(true);
     return (
       <Container>
-        <h1>Files</h1>
+        <Navbar bg="light">
+          <Container fluid>
+            <Navbar.Brand href="#home">File Manager</Navbar.Brand>
+            <Navbar.Collapse>
+              { SearchBox() }
+            </Navbar.Collapse>
+            {/* <Navbar.Collapse id="navbarScroll">
+              <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#link">Link</Nav.Link>
+                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                </NavDropdown> 
+              </Nav>
+            </Navbar.Collapse>*/}
+          </Container>
+        </Navbar>
         {this.state.loading === true ? (
             <div>
                 <h1>Loading...</h1>
@@ -133,7 +178,7 @@ class App extends React.Component {
             </Stack>
           </Stack>
       )}
-    </Container>
+      </Container>
     );
   };
 }

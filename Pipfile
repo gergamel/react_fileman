@@ -12,6 +12,7 @@ python-dotenv = "*"
 flask-cors = "*"
 python-magic = "*"
 simplejson = "*"
+psycopg = "*"
 
 [requires]
 python_version = "3.9"

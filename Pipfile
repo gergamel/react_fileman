@@ -13,6 +13,7 @@ flask-cors = "*"
 python-magic = "*"
 simplejson = "*"
 psycopg = "*"
+pypdf2 = "*"
 
 [requires]
 python_version = "3.9"

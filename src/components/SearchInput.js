@@ -1,6 +1,6 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
+import React from "react";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
 
 /*
 Keen to try create something like the GitLab search box, where you get
@@ -17,9 +17,10 @@ class SearchInput extends React.Component {
         this.state = { input: "" };
     }
 
-    updateInput = input => {
+    updateInput(input){
+        //updateInput = input => {
         this.setState({ input });
-    };
+    }
 
     // handleAddTodo = () => {
     //     this.props.addTodo(this.state.input);

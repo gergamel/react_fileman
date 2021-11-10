@@ -1,19 +1,18 @@
-//import logo from './logo.svg';
-import { React } from 'react';
-import {useState} from 'react'
-import { Container, Navbar, Nav, NavDropdown, Tab, Tabs } from 'react-bootstrap'
-//import Accordian from 'react-bootstrap/Accordion';
-//import Toast from 'react-bootstrap/Toast';
+//import logo from "./logo.svg";
+import { React } from "react";
+import {useState} from "react";
+import { Container, Navbar, Nav, NavDropdown, Tab, Tabs } from "react-bootstrap";
+//import Accordian from "react-bootstrap/Accordion";
+//import Toast from "react-bootstrap/Toast";
 
-import SearchInput from './components/SearchInput'
-import FileList from './components/FileList'
-
-import './App.css';
+import SearchInput from "./components/SearchInput";
+import FileList from "./components/FileList";
+import "./App.css";
 
 function App() {
-  const [key, setKey] = useState('files');
+  const [key, setKey] = useState("files");
   return (
-    <Container>
+    <Container fluid>
       <Navbar bg="light">
         <Container fluid>
           <Navbar.Brand href="#home">File Manager</Navbar.Brand>

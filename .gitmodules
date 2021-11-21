@@ -1,0 +1,3 @@
+[submodule "free-file-icons"]
+	path = free-file-icons
+	url = https://github.com/redbooth/free-file-icons.git

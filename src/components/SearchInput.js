@@ -31,7 +31,7 @@ class SearchInput extends React.Component {
         return (
             <Form className="d-flex">
                 <FormControl
-                    input-sm
+                    type="input-sm"
                     placeholder="Search for anything..."
                     aria-label="Search"
                     aria-describedby="searchText"

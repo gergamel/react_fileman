@@ -44,11 +44,9 @@ class FileUploadModal extends React.Component {
   }
   render() {
     return (
-      <Modal show={true} size="lg" centered>
+      <Modal show={true} size="lg">
         <Modal.Header>
           <Modal.Title>New File Upload</Modal.Title>
-          <Button onClick={this.onUpload} variant="success" className="ms-auto">Upload</Button>
-          <Button onClick={this.props.onCancel} variant="danger" className="ms-2">Cancel</Button>
         </Modal.Header>
         <Modal.Body>
           <FileDropZone handleDrop={this.handleDrop}>
@@ -89,6 +87,10 @@ class FileUploadModal extends React.Component {
             </Stack>
           </Stack> */}
         </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.onUpload} variant="success" className="ms-2">Upload</Button>
+          <Button onClick={this.props.onCancel} variant="danger" className="ms-2">Cancel</Button>
+        </Modal.Footer>
       </Modal>
     );
   }
@@ -142,10 +144,12 @@ FileUploadModal.propTypes = {
 class FileList extends React.Component {
   constructor(props) {
     super(props);
-    const API = "http://localhost:5000/api/files";
+    console.log(process.env);
+    const API = process.env.REACT_APP_API + "/files";
     this.state = {loading: true, showNewModal: false, files: []};
     this.handleUpload = this.handleUpload.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    console.debug(API);
 
     fetch(API)
     .then((response) => {
@@ -159,24 +163,11 @@ class FileList extends React.Component {
   }
 
   handleUpload(f) {
-    // const selectedFile = document.getElementById("fileInput").files[0];
-    // var formData = new FormData();
-    // formData.append("file", selectedFile);
-    // this.setState({loading: true});
-    // fetch("http://localhost:5000/api/upload", {method:"POST",body:formData})
-    //   .then((response) => {
-    //       console.log(response);
-    //       return response.json();
-    //   })
-    //   .then((data) => {
-    //       console.log(data);
-    //       this.setState({loading: false, files: this.state.files.concat([data])});
-    //   });
-    // event.preventDefault();
+    const API = process.env.REACT_APP_API + "/upload";
     var formData = new FormData();
     formData.append("file", f);
     this.setState({loading: true});
-    fetch("http://localhost:5000/api/upload", {method:"POST",body:formData})
+    fetch(API, {method:"POST",body:formData})
       .then((response) => {
           console.log(response);
           return response.json();
@@ -196,7 +187,7 @@ class FileList extends React.Component {
     //   const getAPI = () => {
     //     // Change this endpoint to whatever local or online address you have
     //     // Local PostgreSQL Database
-    //     const API = "http://localhost:5000/api/files";
+    //     const API = "api/files";
     //   };
     //   getAPI();
     // }, []);
@@ -219,7 +210,7 @@ class FileList extends React.Component {
             }
             <Stack direction="horizontal">
               <h2>Files</h2>
-              <Button variant="primary" className="ms-auto" onClick={() => this.setState({showNewModal:true})}>New File...</Button>
+              <Button variant="primary" className="ms-4" onClick={() => this.setState({showNewModal:true})}>New File...</Button>
               {/* <FileUploadInput
                 handleUpload={f => this.handleUpload(f)}
                 me-auto
@@ -230,7 +221,7 @@ class FileList extends React.Component {
                 <File
                   key={file[0]}
                   Digest={file[0]}
-                  url={"http://localhost:5000/file/contents/"+file[0]}
+                  url={process.env.REACT_APP_API +"/file/contents/"+file[0]}
                   ContentType={file[1]}
                   Size={file[2]}
                   Name={file[3]}

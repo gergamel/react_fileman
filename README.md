@@ -28,6 +28,11 @@ sudo podman run -d --name react_fileman_db -p 54321:5432 -e POSTGRES_PASSWORD=po
 - npm
 - pipenv
 
+## NPM Notes
+
+The npm tool is a bit foreign for someone coming from Makefile-based projects. Especially 
+npm install -g npm-check-updates
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
